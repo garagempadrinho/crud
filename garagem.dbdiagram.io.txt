@@ -1,0 +1,26 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table garagem {
+  id_carro integer [primary key, increment]
+  preco decimal (8,2)
+  modelo varchar (30)
+}
+
+Table clientes {
+  id_cliente integer [primary key, increment, not null]
+  nome varchar(30)
+  telefone varchar(14)
+  id_carro integer
+}
+
+Table vendas {
+  id_venda integer [primary key, not null]
+  valor_venda DECIMAL(10,2)
+  vendedor VARCHAR(30)
+  id_cliente integer
+}
+
+Ref: garagem.id_carro > clientes.id_carro // many-to-one
+
+Ref: clientes.id_cliente - vendas.id_cliente //one-to-one
